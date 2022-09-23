@@ -1,0 +1,13 @@
+<h1> Welcome to Wordtopia </h1> 
+
+<h3> Click any word to view its defintion</h3> 
+
+<% if @words.any? %>
+  <ul>
+    <% @words.each do |word| %>
+      <li><%= word.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are currently words in the database!</p>
+<% end %>
