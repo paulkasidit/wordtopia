@@ -3,10 +3,12 @@ require 'word'
 
 describe '#Word' do 
 
+  #?
   before(:each) do 
     Word.clear()
   end
 
+  #passing
   describe('.all') do 
     it ("returns an empty array when there is no words") do
       expect(Word.all).to(eq(([])))
@@ -35,6 +37,8 @@ describe '#Word' do
     end
   end
 
+
+  #passing
   describe('.clear') do
     it("clears database") do
       word1 = Word.new({:word => "Fire", :id => nil })
@@ -45,7 +49,6 @@ describe '#Word' do
       expect(Word.all).to(eq([]))
     end
   end
-
 
 
 end
