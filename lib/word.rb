@@ -4,9 +4,8 @@ class Word
   @@words = {} 
   @@total_rows = 0 
 
-  def initialize(word, definition) 
+  def initialize(word) 
     @word = word 
-    @definition = definition 
     @id = id || @@total_rows += 1 
   end
 
@@ -27,8 +26,13 @@ class Word
 
   #delete words 
   def delete
-    @@word.delete(self.id) 
+    @@words.delete(self.id) 
   end
+
+  def save 
+    @@words[self.id] = Word.new(self.word)
+  end
+
 end
 
 

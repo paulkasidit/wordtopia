@@ -2,10 +2,10 @@
 
 <h3> Click any word to view its defintion</h3> 
 
-<% if @words.any? %>
+<% if @word.any? %>
   <ul>
-    <% @words.each do |word| %>
-      <li><%= word.name %></li>
+    <% @word.each do |w| %>
+      <li><%= w.word %></li>
     <% end %>
   </ul>
 <% else %>
