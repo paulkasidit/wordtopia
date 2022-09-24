@@ -25,5 +25,10 @@ get ('/word/new') do
   erb(:new_word)
 end 
 
+get ('/word/edit') do 
+  erb(:edit_word)
+end
+
+
 
 
