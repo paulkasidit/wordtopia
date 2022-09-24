@@ -1,5 +1,5 @@
 class Word
-  attr_reader :word, :id
+  attr_reader :id, :word
 
   @@words = {} 
   @@total_rows = 0 
@@ -29,11 +29,12 @@ class Word
     @@words = {} 
     @@total_rows = 0 
   end
-
+  
+  #find word
   def self.find(id) 
     @@words[id] 
   end
-  
+
 end
 
 
