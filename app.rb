@@ -6,11 +6,12 @@ also_reload('lib/**/*.rb')
 
 get ('/') do 
   @words = Word.all 
-  erb(:words)
+  erb(:home_page)
 end
 
 get ('/word/new') do 
   erb(:new_word)
 end 
+
 
 
