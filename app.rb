@@ -5,13 +5,17 @@ require('pry')
 also_reload('lib/**/*.rb') 
 
 get ('/') do 
-  @words = Word.all 
+  @word = Word.all 
   erb(:home_page)
 end
 
 get ('/word') do 
   @word = Word.all 
-  erb(:home_page) 
+  erb(:home_page)
+end
+
+get ('/word/new') do 
+  erb(:new_word) 
 end
 
 post ('/word') do 
@@ -21,13 +25,20 @@ post ('/word') do
   redirect to('/word')
 end
 
-get ('/word/new') do 
-  erb(:new_word)
-end 
-
-get ('/word/edit') do 
-  erb(:edit_word)
+get ('/word/:id') do 
+  @word = Word.find(params[:id].to_i())
+  erb(:word)
 end
+
+get ('/word/:id/update') do
+  @word = Word.find(params[:id].to_i()) 
+  erb(:update_word)
+end
+
+# patch ('/word/')
+# get ('/word/edit') do 
+#   erb(:update_word)
+# end
 
 
 
