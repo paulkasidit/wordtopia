@@ -9,6 +9,11 @@ class Word
     @id = attributes.fetch(:id) || @@total_rows += 1 
   end
 
+  #update words 
+  def update(word) 
+    @word = word 
+  end
+  
   #display words
   def self.all 
     @@words.values
