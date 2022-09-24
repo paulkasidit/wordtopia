@@ -11,7 +11,7 @@ class Word
 
   #display words
   def self.all 
-    @@words.values()
+    @@words.values
   end 
 
   #save words
