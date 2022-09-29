@@ -30,11 +30,19 @@ class Definition
     @@definitions[self.id] = Definition.new({:definition => self.definition, :word_id => self.word_id, :id => self.id})
   end
 
+  def ==(defintion_to_compare)
+    self.definition = defintion_to_compare.definition
+  end
+
   def delete 
     @@definitions.delete(self.id)
   end
 
-  def self.match_definition_to_word(word_id) 
+  def slef.find(id) 
+    @@definitions[id]
+  end
+  
+  def self.find_definition_by_word(word_id) 
     definitions = [] 
     @@definitions,.values.each do |definition| 
       if definition.word_id = word_id 
@@ -42,5 +50,5 @@ class Definition
       end
     end
   end
-  
+
 end

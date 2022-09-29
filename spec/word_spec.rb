@@ -2,7 +2,6 @@ require 'rspec'
 require 'word'
 
 describe '#Word' do 
-
   #?
   before(:each) do 
     Word.clear()
@@ -12,6 +11,16 @@ describe '#Word' do
   describe('.all') do 
     it ("returns an empty array when there is no words") do
       expect(Word.all).to(eq(([])))
+    end
+  end
+  
+  describe('#==') do 
+    it ("is the same word if it has the same attributes as another word") do
+    word1 = Word.new({:word => "Fire", :id => nil})
+    word1.save()
+    word2 = Word.new({:word => "Fire", :id => nil})
+    word2.save() 
+    expect(word1).to(eq(word2))
     end
   end
 
@@ -52,3 +61,4 @@ describe '#Word' do
 
 
 end
+

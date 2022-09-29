@@ -40,6 +40,12 @@ class Word
     @@words[id] 
   end
 
+  #ryans code
+  def ==(word)
+    self.word == word.word && self.id == word.id
+  end
+
 end
+
 
 
