@@ -3,7 +3,7 @@ class Definition
   attr_reader :id 
   attr_accessor :word, :word_id
 
-  @@definitions = {} 
+  @@definitions = {}
   @@total_rows = 0 
 
   def initialize(attributes)
@@ -13,42 +13,49 @@ class Definition
   end
 
   def self.all 
-    @@definitions.values
+    @@definitions.values()
   end 
 
   def save 
     @@definitions[self.id] = Definition.new({:definition => self.definition, :word_id => self.word_id, :id => self.id})
   end
 
-  def self.find(id) 
-    @@definitions[id]
-  end
-
-  def update(definition,word_id)
-    self.definition = definition 
-    self.word_id = word_id 
-    @@definitions[self.id] = Definition.new({:definition => self.definition, :word_id => self.word_id, :id => self.id})
-  end
-
-  def ==(defintion_to_compare)
+  def ==(definition_to_comapre) 
     self.definition = defintion_to_compare.definition
+  end 
+
+  def self.clear_database 
+    @@definitions =  {} 
+    @@total_rows = 0 
+  end
+  
+  def update(new_defintion)
+    self.definition = new_definition 
+    @@definitions[self.id] = Definition.new({:definition => self.definition, :word_id => self.word_id, :id => self.id})
   end
 
   def delete 
     @@definitions.delete(self.id)
   end
 
-  def slef.find(id) 
+  def self.delete_by_id(id) 
+    @@definition.delele(id)
+  end
+
+
+  def self.find_definition_by_id(id) 
     @@definitions[id]
   end
-  
-  def self.find_definition_by_word(word_id) 
+
+
+  def self.find_definition_by_word(search_word_id) 
     definitions = [] 
-    @@definitions,.values.each do |definition| 
-      if definition.word_id = word_id 
+    @@definitions.values.each do |definition| 
+      if definition.word_id = search_word_id 
         definitions.push(definition)
       end
     end
+    definitions
   end
 
 end

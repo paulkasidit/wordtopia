@@ -9,41 +9,54 @@ class Word
     @id = attributes.fetch(:id) || @@total_rows += 1 
   end
 
-  #update words 
-  def update(word) 
-    @word = word 
-  end
-  
-  #display words
   def self.all 
     @@words.values
   end 
 
-  #save words
   def save 
     @@words[self.id] = Word.new({:word => self.word, :id => self.id})
   end
+
+  def ==(word_to_compare)
+    self.word == word_to_compare.word
+  end
+
+  #clear database
+  def self.clear_database 
+    @@words = {} 
+    @@total_rows = 0 
+  end
+
+  def update(word) 
+    @word = word 
+    @@words[self.id] = Word.new({:word => self.word, :id => self.id})
+  end
   
-  #delete words 
   def delete
     @@words.delete(self.id) 
   end
 
-  #clear database
-  def self.clear 
-    @@words = {} 
-    @@total_rows = 0 
-  end
-  
-  #find word
-  def self.find(id) 
+  def self.find_word_by_id(id) 
     @@words[id] 
   end
 
-  #ryans code
-  def ==(word)
-    self.word == word.word && self.id == word.id
+  def defintions 
+    Definition.find_definition_by_word(self.id)
   end
+
+  def delete_definitions 
+    definition_array =  Definition.find_definition_by_word(self.id)
+    if definition_array != []
+      definition_array.each do |definition| 
+        Definition.delete_by_id(definition.id)
+      end
+    end
+  end
+
+  def self.search_word(search_word)
+    @@words.values().select{|word| word.word == seach_word}
+  end
+
 
 end
 

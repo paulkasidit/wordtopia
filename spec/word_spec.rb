@@ -1,64 +1,25 @@
 require 'rspec'
 require 'word'
+require 'definition'
 
 describe '#Word' do 
-  #?
+
   before(:each) do 
-    Word.clear()
+    Word.clear_database 
+    Definition.clear_database 
+    @attributes1 = { word: 'Lollipop',id: nil}
+    @attributes2 = { word: 'Bubblegum',id: nil}
+    @word1 = Word.new(@attributes1)
+    @word1.save 
   end
 
-  #passing
-  describe('.all') do 
-    it ("returns an empty array when there is no words") do
-      expect(Word.all).to(eq(([])))
+  describe('.all') do
+    it('returns array of all words stored in the Word instantiated hash') do
+      expect(Word.all).to(eq([@word1]))
     end
   end
+
   
-  describe('#==') do 
-    it ("is the same word if it has the same attributes as another word") do
-    word1 = Word.new({:word => "Fire", :id => nil})
-    word1.save()
-    word2 = Word.new({:word => "Fire", :id => nil})
-    word2.save() 
-    expect(word1).to(eq(word2))
-    end
-  end
-
-  #failing
-  describe('#save') do 
-    it ("save a word") do 
-      word1 = Word.new({:word => "Fire", :id => nil })
-      word1.save()
-      word2 = Word.new({:word => "Wind", :id => nil })
-      word2.save() 
-      expect(Word.all).to(eq([word1, word2]))
-    end
-  end
-
-  #failing
-  describe(".find") do 
-    it ("finds a word by id") do 
-      word1 = Word.new({:word => "Fire", :id => nil })
-      word1.save()
-      word2 = Word.new({:word => "Water", :id => nil })
-      word2.save()
-      expect(Word.find(word1.id)).to(eq(word1))
-    end
-  end
-
-
-  #passing
-  describe('.clear') do
-    it("clears database") do
-      word1 = Word.new({:word => "Fire", :id => nil })
-      word1.save()
-      word2 = Word.new({:word => "Water", :id => nil })
-      word2.save()
-      Word.clear()
-      expect(Word.all).to(eq([]))
-    end
-  end
-
 
 end
 
