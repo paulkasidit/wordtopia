@@ -21,7 +21,6 @@ class Word
     self.word == word_to_compare.word
   end
 
-  #clear database
   def self.clear_database 
     @@words = {} 
     @@total_rows = 0 
@@ -40,11 +39,11 @@ class Word
     @@words[id] 
   end
 
-  def defintions 
+  def definition
     Definition.find_definition_by_word(self.id)
   end
 
-  def delete_definitions 
+  def delete_definition 
     definition_array =  Definition.find_definition_by_word(self.id)
     if definition_array != []
       definition_array.each do |definition| 
@@ -54,9 +53,8 @@ class Word
   end
 
   def self.search_word(search_word)
-    @@words.values().select{|word| word.word == seach_word}
+    @@words.values().select{|word| word.word == search_word}
   end
-
 
 end
 

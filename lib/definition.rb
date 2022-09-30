@@ -1,7 +1,7 @@
 class Definition 
 
   attr_reader :id 
-  attr_accessor :word, :word_id
+  attr_accessor :definition, :word_id
 
   @@definitions = {}
   @@total_rows = 0 
@@ -17,11 +17,11 @@ class Definition
   end 
 
   def save 
-    @@definitions[self.id] = Definition.new({:definition => self.definition, :word_id => self.word_id, :id => self.id})
+    @@definitions[self.id] = Definition.new({:definition => self.definition, :id => self.id, :word_id => self.word_id})
   end
 
-  def ==(definition_to_comapre) 
-    self.definition = defintion_to_compare.definition
+  def ==(definition_to_compare) 
+    self.definition == definition_to_compare.definition
   end 
 
   def self.clear_database 
@@ -39,7 +39,7 @@ class Definition
   end
 
   def self.delete_by_id(id) 
-    @@definition.delele(id)
+    @@definitions.delete(id)
   end
 
 
