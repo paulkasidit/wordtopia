@@ -29,7 +29,7 @@ class Definition
     @@total_rows = 0 
   end
   
-  def update(new_defintion)
+  def update(new_definition)
     self.definition = new_definition 
     @@definitions[self.id] = Definition.new({:definition => self.definition, :word_id => self.word_id, :id => self.id})
   end
@@ -51,7 +51,7 @@ class Definition
   def self.find_definition_by_word(search_word_id) 
     definitions = [] 
     @@definitions.values.each do |definition| 
-      if definition.word_id = search_word_id 
+      if definition.word_id == search_word_id 
         definitions.push(definition)
       end
     end

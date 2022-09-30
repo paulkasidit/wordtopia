@@ -81,7 +81,7 @@ describe '#Word' do
 
   describe('.search_word') do 
     it('returns a list of words that match string input') do
-    word2 = Word.new(attributes2)
+    word2 = Word.new(@attributes2)
     word2.save()
     word3 = Word.new({:word => 'Fox', :id => nil })
     word3.save()

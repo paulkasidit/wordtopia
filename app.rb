@@ -22,11 +22,11 @@ post ('/words') do
   name = params[:word]
   word = Word.new({:word => name,:id => nil})
   word.save()
-  redirect to('/word')
+  redirect to('/words')
 end
 
 get ('/words/:id') do 
-  @word = Word.find(params[:id].to_i())
+  @word = Word.find_word_by_id(params[:id].to_i())
   erb(:word)
 end
 
