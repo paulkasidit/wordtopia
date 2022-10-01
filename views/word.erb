@@ -1,12 +1,13 @@
 <h1><%= @word.word %></h1>
-<p><a href="/words/<%= @word.id %>/update_word">Edit</a></p>
+
+<p><a href="/word/<%= @word.id %>/update_word">Edit</a></p>
 
 <h3>Definitions:</h3>
 
 <% if @word.definition.any? %>
 <ul>
       <% @word.definition.each do |definition| %>
-        <li><a href="/words/<%= @word.id %>/definition/<%= definition.id %>"><%= definition.definition %></a></li>
+        <li><a href="/word/<%= @word.id %>/definition/<%= definition.id %>"><%= definition.definition %></a></li>
       <% end %>
     </ul>
   <% else %>
@@ -15,10 +16,10 @@
 <br>
 <h4>Add a definition for "<%= @word.word %>":</h4>
 
-<form action="/words/<%= @word.id %>/def" method="post">
+<form action="/word/<%= @word.id %>/definition" method="post">
   <div class="form-group">
-    <label for="definition_text">Definition:</label>
-    <input id="definition_text" name="definition_text" class="form-control" type="text" required>
+    <label for="definition">Definition:</label>
+    <input id="definition" name="definition" class="form-control" type="text" required>
   </div>
   <button type="submit" class="btn btn-success">Add a new definition</button>
 </form>

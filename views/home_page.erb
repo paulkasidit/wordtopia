@@ -1,18 +1,29 @@
 <h1> Welcome to Wordtopia </h1> 
 
-<h3> Click any word to view its defintion</h3> 
+<h1>Wordtopia</h1>
 
-<% if @word.any? %>
+<h3>Fun Fun Fun with words!</h3>
+
+<h3>Search words:</h3>
+<form action="/">
+  <div class="form-group">
+    <input id="search" name="search" class="form-control" type="text" required>
+  </div>
+  <button type="submit" class="btn btn-success">Search!</button>
+</form>
+
+<% if @words.any? %>
   <ul>
-    <% @word.each do |w| %>
-      <li><a href="/words/<%= w.id %>"><%= w.word %></a></li>
+    <% @words.each do |word| %>
+      <li><a href="/word/<%= word.id %>"><%= word.word %></a></li>
     <% end %>
   </ul>
 <% else %>
-  <p>There are currently words in the database!</p>
+  <p> You have no words yet!</p>
 <% end %>
 
-<a href =  "/words/new"> Add a new word </a>
-<br>
-<%# <a href = "/word/update_word">Update a word</a>  %>
+<a href="/word/new">Add a new word</a>
+<form action="/words" method="post">
+  <input name="_method" type="hidden" value="patch">
+</form>
 

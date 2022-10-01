@@ -11,24 +11,72 @@ get('/') do
   else
     @words = Word.all
   end
+  erb(:home_page)
+end
+
+get ('/word/new') do 
+  erb(:new_word)
+end
+
+patch('/words') do
+  erb(:home_page)
+end
+
+post('/words') do 
+  new_word = params[:word]
+  word = Word.new({:word => new_word, :id => nil})
+  word.save()
+  redirect to('/')
+end
+
+get('/word/:id') do
+  @word = Word.find_word_by_id(params[:id].to_i())
   erb(:word)
 end
 
-  get ('/word/new') do 
-    erb(:new_word)
-  end
+post('/word/:id/definition') do
+  @word = Word.find_word_by_id(params[:id].to_i())
+  definition = Definition.new({:definition => params[:definition],:word_id => @word.id, :id => nil}) 
+  definition.save()
+  erb(:word)
+end
 
-# # post('/words') do 
-# #   new_word = params[:word]
-# #   word = Words.new({:word => new_word, :id => nil})
-# #   word.save()
-# #   redirect to('/')
-# # end
+get('/word/:id/update_word') do
+  @word = Word.find_word_by_id(params[:id].to_i())
+  erb(:update_word)
+end
 
-# get('/words/:id') do
-#   @words = Word.find(params[:id].to_i())
-#   erb(:word)
-# end
+patch('/word/:id') do
+  @word = Word.find_word_by_id(params[:id].to_i)
+  @word.update(params[:word_edit])
+  redirect to("/word/#{@word.id}")
+end
+
+delete('/word/:id') do
+  word = Word.find_word_by_id(params[:id].to_i)
+  word.delete_definition
+  word.delete
+  redirect '/'
+end
+
+get('/word/:id/definition/:definition_id') do
+  @word = Word.find_word_by_id(params[:id].to_i)
+  @definition = Definition.find_definition_by_id(params[:definition_id].to_i())
+  erb(:update_definition)
+end
+
+patch('/word/:id/definition/:definition_id') do
+  @definition = Definition.find_definition_by_id(params[:definition_id].to_i())
+  @definition.update(params[:new_definition])
+  redirect to("/word/#{params[:id]}")
+end
+
+delete('/word/:id/definition/:definition_id') do
+  definition = Definition.find_definition_by_id(params[:definition_id].to_i())
+  definition.delete
+  redirect to("/word/#{params[:id]}")
+end
+
 
 
 
