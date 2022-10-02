@@ -7,7 +7,7 @@ also_reload('lib/**/*.rb')
 
 get('/') do 
   if params["search"]
-    @words = Word.search_word(params[:search_word])
+    @words = Word.search_word(params[:search])
   else
     @words = Word.all
   end
@@ -48,7 +48,7 @@ end
 
 patch('/word/:id') do
   @word = Word.find_word_by_id(params[:id].to_i)
-  @word.update(params[:word_edit])
+  @word.update(params[:update_word])
   redirect to("/word/#{@word.id}")
 end
 

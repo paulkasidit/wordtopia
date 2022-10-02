@@ -1,4 +1,4 @@
-<h3>Edit definition</h3>
+<h3>Edit definition: <%= @definition.definition%></h3>
 
 <form action="/word/<%= @word.id %>/definition/<%= @definition.id %>" method="post">
   <input name="_method" type="hidden" value="patch">
