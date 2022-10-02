@@ -20,7 +20,7 @@ This CRUD web application gives kids the opportunity to expand their vocabularie
 
 1. Clone the repo to your desired local directory with the below terminal command (you must already have git installed). Open a terminal in your preferred directory and run this command. 
 ```
-git clone https://github.com/paulkasidit/wordtopia
+$git clone https://github.com/paulkasidit/wordtopia
 
 ``` 
 2. Open this folder in your VS Code. 
@@ -34,7 +34,7 @@ $ruby app.rb
 ```
 5. Run tests for all scripts in the project's root directory with following terminal command
 ``` 
-rspec 
+$rspec 
 ``` 
 
 ## Known Bugs
