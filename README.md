@@ -24,21 +24,22 @@ git clone https://github.com/paulkasidit/wordtopia
 
 ``` 
 2. Open this folder in your VS Code. 
-3. And that's it!.
-
-Run scripts in the project's root directory with the following terminal command, the app will usually run in the http://localhost:4567/ port. 
+3. Run this command to install required dependencies
 ``` 
-ruby app.rb
+$bundle install
+```
+4. Run this command to start the server, it will usually be hosted on http://localhost:4567/
 ``` 
-
-Run tests for all scripts in the project's root directory with following terminal command
+$ruby app.rb
+```
+5. Run tests for all scripts in the project's root directory with following terminal command
 ``` 
 rspec 
 ``` 
 
 ## Known Bugs
 
-* None
+* Even if there is no word present, the list still displays an empty bullet point. 
 
 ## License
 
